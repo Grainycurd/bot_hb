@@ -51,13 +51,18 @@ const quest = new Scenes.WizardScene(
         return ctx.wizard.next();
     },
 
-
-    // ШАГ 3 — холодная вода
+    // ШАГ 3 (ОБРАБОТКА СЕЛЕДКИ И ВОПРОС ПРО OPM) - ВОТ ТУТ БЫЛА ОШИБКА
     async (ctx) => {
         if (!ctx.callbackQuery) return;
         await ctx.answerCbQuery();
         await clearButtons(ctx);
 
+        // Добавляем реакцию на селедку:
+        if (ctx.callbackQuery.data === 'shuba_yes') {
+            await ctx.reply('сочувствую 😄');
+        } else if (ctx.callbackQuery.data === 'shuba_no') {
+            await ctx.reply('мы в чем-то похожи');
+        }
 
         await ctx.reply(
             'Ты смотрел OnePunchMan?',
