@@ -3,16 +3,16 @@ const fs = require('fs');
 const path = require('path');
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.yandex.com',   // SMTP сервер Яндекса
-    port: 465,                 // SSL порт
-    secure: true,              // true для 465
+    host: 'smtp.yandex.ru',
+    port: 465,
+    secure: true,
+
     auth: {
-        user: process.env.MAIL_USER, // твоя почта Яндекс
-        pass: process.env.MAIL_PASS  // пароль приложения
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
     },
-    tls: {
-        rejectUnauthorized: false // на случай проблем с SSL
-    }
+
+    family: 4
 });
 
 // Проверка соединения
