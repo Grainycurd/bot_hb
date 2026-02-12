@@ -10,7 +10,6 @@ const transporter = nodemailer.createTransport({
         user: process.env.MAIL_USER, // твоя почта Яндекс
         pass: process.env.MAIL_PASS  // пароль приложения
     },
-    family: 4,
     tls: {
         rejectUnauthorized: false // на случай проблем с SSL
     }
