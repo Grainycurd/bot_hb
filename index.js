@@ -58,11 +58,6 @@ const quest = new Scenes.WizardScene(
         await ctx.answerCbQuery();
         await clearButtons(ctx);
 
-        if (ctx.callbackQuery.data === 'cold_yes') {
-            await ctx.reply('Вот это характер 💪');
-        } else {
-            await ctx.reply('Значит всё впереди.');
-        }
 
         await ctx.reply(
             'Ты смотрел OnePunchMan?',
