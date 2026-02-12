@@ -3,19 +3,25 @@ const fs = require('fs');
 const path = require('path');
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.yandex.ru',
-    port: 587,             // <-- Было 465, ставим 587
-    secure: false,         // <-- Было true, ставим false (это включает STARTTLS)
+    // Используем прямой IP Яндекса, чтобы исключить проблемы с DNS
+    host: '77.88.21.158',
+    port: 587,
+    secure: false, // STARTTLS
     auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS
     },
     tls: {
-        rejectUnauthorized: false // <-- Добавь это, иногда помогает, если сертификаты шалят
+        // ОБЯЗАТЕЛЬНО: так как сертификат выдан на "smtp.yandex.ru", 
+        // а мы заходим по IP, нужно отключить строгую проверку имени хоста
+        rejectUnauthorized: false,
+        servername: 'smtp.yandex.ru' // Помогаем серверу понять, какой сертификат показать
     },
-    // Оставляем family: 4, это важно для Railway!
-    family: 4
+    family: 4,
+    connectionTimeout: 10000, // 10 секунд на попытку соединения
+    greetingTimeout: 10000
 });
+
 
 
 // Проверка соединения
