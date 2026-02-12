@@ -51,28 +51,6 @@ const quest = new Scenes.WizardScene(
         return ctx.wizard.next();
     },
 
-    // ШАГ 2 — селедка
-    async (ctx) => {
-        if (!ctx.callbackQuery) return;
-        await ctx.answerCbQuery();
-        await clearButtons(ctx);
-
-        if (ctx.callbackQuery.data === 'shuba_yes') {
-            await ctx.reply('Сочувствую 😄');
-        } else {
-            await ctx.reply('Вот это сила воли.');
-        }
-
-        await ctx.reply(
-            'А искупаться в холодной воде успел в этом году?',
-            Markup.inlineKeyboard([
-                [Markup.button.callback('Да', 'cold_yes')],
-                [Markup.button.callback('Нет', 'cold_no')]
-            ])
-        );
-
-        return ctx.wizard.next();
-    },
 
     // ШАГ 3 — холодная вода
     async (ctx) => {
