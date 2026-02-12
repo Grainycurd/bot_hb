@@ -9,7 +9,7 @@ async function sendLetter(toEmail) {
     const payload = {
         key: "MY_SECRET_KEY_123", // Должен совпадать с ключом в Google Script
         to: toEmail,
-        subject: 'Специальная история для тебя',
+        subject: 'OneStory-man',
         html: html
     };
 
